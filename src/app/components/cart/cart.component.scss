@@ -12,34 +12,53 @@
             background-color: #fff;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
             border-radius: 1px;
-            padding: 20px;
             display: flex;
+            flex-direction: column;
             margin: 20px 0px;
 
-            .product__img {
-                margin-right: 10px;    
-                width: 120px;
-                height: 120px;
+            .product-details {
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                padding: 10px;
 
-                img {
-                    max-width: 120px;
-                    max-height: 120px;
+                .product__img {
+                    margin-right: 10px;    
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    img {
+                        max-width: 80px;
+                        max-height: 80px;
+                    }
+                }
+
+                &__labels {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    .product__title, .product__qty {
+                        margin-top: 10px;
+                        font-size: 12px;
+                        padding: 0 10px;
+                    }
+                    .product__title {
+                        color: #6e6e6e;
+                    }
+                    .product__qty {
+                        text-align: end;
+                    }
                 }
             }
 
-            .product__details {
+            .product-amount {
                 display: flex;
-                flex-direction: column;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-
-                .product__title {
-                    margin: 5px;
-                    text-align: center;
-                }
+                border-top: 1px solid #cccccc;
+                padding: 10px;
 
                 .product__price {
                     margin: 5px;
@@ -47,19 +66,18 @@
                 }
 
                 .product__btn--remove {
-                    width: 120px;
+                    width: 80px;
                     margin: 5px;
                     text-transform: uppercase;
-                    background-color: #3d89fa;
+                    background-color: transparent;
+                    color: #3d89fa;
                     border: none;
                     border-radius: 4px;
                     padding: 5px;
-                    color: #fff;
                     font-weight: 500;
                     &:hover {
                         cursor: pointer;
-                        background: lighten($color: #3d89fa, $amount: 5);
-                        box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.2);
+                        background-color: #eeeeee;
                     }
                 }
             }
