@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { Store } from '@ngrx/store';
+import { Observable, shareReplay } from 'rxjs';
+import { loadProducts } from './state/actions/product.actions';
+import { selectLoading } from './state/selectors/products.selectors';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +11,14 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
 
+  loading$ = new Observable<boolean>();
   showCart = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.apiService.getAllProducts()
-      .subscribe((res) => {
-        console.log(res);
-      }
-      );
+    this.store.dispatch(loadProducts());
+    this.loading$ = this.store.select(selectLoading).pipe(shareReplay());
   }
 
   toggleCart() {

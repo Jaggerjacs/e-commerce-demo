@@ -10,6 +10,9 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffects } from './state/effects/products.effects';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,10 @@ import { ProductsComponent } from './components/products/products.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ name: 'test', maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ name: 'debbug' }),
     HttpClientModule,
+    EffectsModule.forRoot([ProductsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

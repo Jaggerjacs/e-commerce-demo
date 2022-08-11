@@ -1,5 +1,5 @@
 <div class="products-grid">
-    <div *ngFor="let product of products; let i = index;" class="product">
+    <div *ngFor="let product of products$ | async; let i = index;" class="product">
         <div class="product__img">
             <img [src]="product.image" alt="">
         </div>

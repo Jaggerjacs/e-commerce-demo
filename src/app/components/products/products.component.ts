@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { IProduct } from '../../models/product.interface';
 import { ApiService } from '../../services/api.service';
+import { AppState } from '../../state/app.state';
+import { selectLoading, selectProductList } from '../../state/selectors/products.selectors';
 
 @Component({
   selector: 'app-products',
@@ -8,21 +13,17 @@ import { ApiService } from '../../services/api.service';
 })
 export class ProductsComponent implements OnInit {
 
-  products: any[] = [];
+  products$ = new Observable<any>();
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private store: Store<AppState>,
+  ) { }
 
   ngOnInit(): void {
-    this.apiService.getAllProducts()
-      .subscribe((res) => {
-        console.log(res);
-        this.products = res;
-      }
-      );
+    this.products$ = this.store.select(selectProductList);
   }
 
   addProduct(index: number) {
-    console.log(this.products[index]);
   }
 
 }
