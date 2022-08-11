@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { IProduct } from '../../models/product.interface';
+import { removeProduct } from '../../state/actions/product.actions';
+import { selectCartProductList, selectTotalAmount } from '../../state/selectors/products.selectors';
 
 @Component({
   selector: 'app-cart',
@@ -7,24 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  cartProducts: any[] = [];
-  totalAmount = 0;
+  cartProducts$ = new Observable<any>();
+  totalAmount$ = new Observable<any>();
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
-    // this.cartProducts = [
-    //   {
-    //     id: 1,
-    //     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-    //     price: 109.95,
-    //     image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-    //     qty: 1
-    //   },
-    // ];
+    this.cartProducts$ = this.store.select(selectCartProductList);
+    this.totalAmount$ = this.store.select(selectTotalAmount);
   }
 
-  remove(index: number) {
+  remove(product: IProduct) {
+    this.store.dispatch(removeProduct({ product }));
   }
 
 

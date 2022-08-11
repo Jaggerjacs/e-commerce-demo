@@ -11,7 +11,12 @@ export class ProductsEffects {
         ofType('[Product List] Load products'),
         mergeMap(() => this.apiService.getAllProducts()
             .pipe(
-                map(products => ({ type: '[Product List] Loaded success', products })),
+                map(products => {
+                    products.forEach((el) => {
+                        el.qty = 1;
+                    });
+                    return ({ type: '[Product List] Loaded success', products })
+                }),
                 catchError(() => EMPTY)
             ))
     ));

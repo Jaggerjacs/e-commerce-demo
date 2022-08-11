@@ -1,6 +1,6 @@
 <div class="cart">
     <div class="cart__product-list">
-        <div class="cart__product-list__product" *ngFor="let product of cartProducts; let i = index">
+        <div class="cart__product-list__product" *ngFor="let product of cartProducts$ | async; let i = index">
             <div class="product-details">
                 <div class="product__img">
                     <img [src]="product.image" alt="">
@@ -11,13 +11,13 @@
                 </div>
             </div>
             <div class="product-amount">
-                <button class="product__btn--remove" (click)="remove(i)">Remove</button>
-                <div class="product__price">$ {{product.price}}</div>
+                <button class="product__btn--remove" (click)="remove(product)">Remove</button>
+                <div class="product__price">$ {{product.amount | number : '1.2-2'}}</div>
             </div>
         </div>
     </div>
     <div class="total-amount">
         <label class="total">Total</label>
-        <label class="total">$ {{totalAmount}}</label>
+        <label class="total">$ {{totalAmount$ | async | number : '1.2-2'}}</label>
     </div>
 </div>

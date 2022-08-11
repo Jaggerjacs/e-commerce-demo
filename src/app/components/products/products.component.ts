@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IProduct } from '../../models/product.interface';
+import { ICartProduct, IProduct } from '../../models/product.interface';
 import { ApiService } from '../../services/api.service';
+import { addProduct, addQty, sustractQty } from '../../state/actions/product.actions';
 import { AppState } from '../../state/app.state';
 import { selectLoading, selectProductList } from '../../state/selectors/products.selectors';
 
@@ -23,7 +24,17 @@ export class ProductsComponent implements OnInit {
     this.products$ = this.store.select(selectProductList);
   }
 
-  addProduct(index: number) {
+  addQty(product: IProduct) {
+    this.store.dispatch(addQty({ product }));
+  }
+
+  sustractQty(product: IProduct) {
+    this.store.dispatch(sustractQty({ product }));
+  }
+
+  addProduct(product: IProduct) {
+    // const newProd: IProduct = { ...product, amount: (product.price * product.qty) };
+    this.store.dispatch(addProduct({ product }));
   }
 
 }

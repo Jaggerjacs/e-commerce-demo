@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(loadProducts());
-    this.loading$ = this.store.select(selectLoading).pipe(shareReplay());
+    this.loading$ = this.store.select(selectLoading);
   }
 
   toggleCart() {

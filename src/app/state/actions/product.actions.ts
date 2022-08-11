@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IProduct } from '../../models/product.interface';
+import { ICartProduct, IProduct } from '../../models/product.interface';
 
 
 export const loadProducts = createAction(
@@ -11,12 +11,22 @@ export const loadedProductList = createAction(
     props<{ products: IProduct[] }>()
 );
 
+export const addQty = createAction(
+    '[Product] Add Qty',
+    props<{ product: IProduct }>()
+);
+
+export const sustractQty = createAction(
+    '[Product] Sustract Qty',
+    props<{ product: IProduct }>()
+);
+
 export const addProduct = createAction(
     '[Product List] Add Product',
-    props<{ id: string }>()
+    props<{ product: IProduct }>()
 );
 
 export const removeProduct = createAction(
-    '[Product Cart Collection] Remove Product',
-    props<{ id: string }>()
+    '[Product List] Remove Product',
+    props<{ product: IProduct }>()
 );

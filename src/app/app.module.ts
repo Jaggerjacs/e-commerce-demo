@@ -25,7 +25,7 @@ import { ProductsEffects } from './state/effects/products.effects';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(ROOT_REDUCERS),
-    StoreDevtoolsModule.instrument({ name: 'debbug' }),
+    StoreDevtoolsModule.instrument({ name: 'test' }), // maxAge: 25, logOnly: true, autoPause: true 
     HttpClientModule,
     EffectsModule.forRoot([ProductsEffects]),
   ],
