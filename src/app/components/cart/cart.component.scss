@@ -18,6 +18,7 @@
 
             .product-details {
                 display: flex;
+                justify-content: space-between;
                 padding: 10px;
 
                 .product__img {
@@ -68,7 +69,6 @@
                 .product__btn--remove {
                     width: 80px;
                     margin: 5px;
-                    text-transform: uppercase;
                     background-color: transparent;
                     color: #3d89fa;
                     border: none;
@@ -94,5 +94,16 @@
         font-weight: 500;
         font-size: 20px;
         text-align: end;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .cart {
+        &__product-list {
+            padding: 10px !important;
+            &__product {
+                margin: 5px 0px;
+            }
+        }
     }
 }

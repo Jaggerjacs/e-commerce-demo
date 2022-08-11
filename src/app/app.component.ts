@@ -8,6 +8,8 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
 
+  showCart = false;
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -16,5 +18,9 @@ export class AppComponent implements OnInit {
         console.log(res);
       }
       );
+  }
+
+  toggleCart() {
+    this.showCart = !this.showCart;
   }
 }

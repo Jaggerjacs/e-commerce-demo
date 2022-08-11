@@ -27,7 +27,7 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            font-size: 28px;
+            font-size: 22px;
             color: #fff;
             
             i {
@@ -56,4 +56,30 @@
         }
     }
 
+}
+
+@media only screen and (max-width: 700px) {
+    .home {
+        
+        .content {
+            display: block;
+            .products {
+                width: 100% !important;
+                border: none !important;
+            }
+            .cart {
+                position: fixed;
+                top: 50px;
+                left: 130%;
+                z-index: 1;
+                width: 100%;
+                height: calc(100% - 50px);
+                background-color: #ebebeb;
+                transition: all 0.5s;
+            }
+            .show {
+                left: 0 !important;
+            }
+        }
+    }
 }

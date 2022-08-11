@@ -1,7 +1,7 @@
 <div class="home">
   <div class="header">
     <h2>E-commerce Demo</h2>
-    <div class="cart__icon">
+    <div class="cart__icon" (click)="toggleCart()">
       <i class="fa-solid fa-cart-shopping"></i>
     </div>
   </div>
@@ -9,7 +9,7 @@
     <div class="products">
       <app-products></app-products>
     </div>
-    <div class="cart">
+    <div class="cart" [ngClass]="{ 'show': showCart }">
       <app-cart></app-cart>
     </div>
   </div>
