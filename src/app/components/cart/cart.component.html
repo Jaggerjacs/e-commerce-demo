@@ -1,0 +1,18 @@
+<div class="cart">
+    <div class="cart__product-list">
+        <div class="cart__product-list__product" *ngFor="let product of products; let i = index">
+            <div class="product__img">
+                <img [src]="product.image" alt="">
+            </div>
+            <div class="product__details">
+                <div class="product__title">{{product.title}}</div>
+                <div class="product__price">$ {{product.price}}</div>
+                <button class="product__btn--remove" (click)="remove(i)">Remove</button>
+            </div>
+        </div>
+    </div>
+    <div class="total-amount">
+        <label class="total">Total</label>
+        <label class="total">$ {{totalAmount}}</label>
+    </div>
+</div>

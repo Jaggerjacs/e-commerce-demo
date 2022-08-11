@@ -1,0 +1,10 @@
+<div class="products-grid">
+    <div *ngFor="let product of products; let i = index;" class="product">
+        <div class="product__img">
+            <img [src]="product.image" alt="">
+        </div>
+        <div class="product__price">$ {{product.price}}</div>
+        <div class="product__title">{{product.title}}</div>
+        <button class="product__btn--add" (click)="addProduct(i)">Add</button>
+    </div>
+</div>
