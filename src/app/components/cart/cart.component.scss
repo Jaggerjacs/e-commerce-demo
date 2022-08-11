@@ -7,6 +7,10 @@
         height: calc(100% - 60px);
         overflow: auto;
 
+        .empty-cart {
+            margin-top: 20px;
+            text-align: center;    
+        }
 
         &__product {
             background-color: #fff;

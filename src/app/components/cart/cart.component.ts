@@ -12,8 +12,8 @@ import { selectCartProductList, selectTotalAmount } from '../../state/selectors/
 })
 export class CartComponent implements OnInit {
 
-  cartProducts$ = new Observable<any>();
-  totalAmount$ = new Observable<any>();
+  cartProducts$ = new Observable<IProduct[]>();
+  totalAmount$ = new Observable<number>();
 
   constructor(private store: Store<any>) { }
 

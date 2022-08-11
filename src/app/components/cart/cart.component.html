@@ -1,20 +1,25 @@
 <div class="cart">
     <div class="cart__product-list">
-        <div class="cart__product-list__product" *ngFor="let product of cartProducts$ | async; let i = index">
-            <div class="product-details">
-                <div class="product__img">
-                    <img [src]="product.image" alt="">
+        <ng-container *ngIf="cartProducts$ | async as prods">
+            <div *ngIf="prods.length === 0" class="empty-cart">
+                No products on the cart
+            </div>
+            <div class="cart__product-list__product" *ngFor="let product of cartProducts$ | async">
+                <div class="product-details">
+                    <div class="product__img">
+                        <img [src]="product.image" alt="">
+                    </div>
+                    <div class="product-details__labels">
+                        <div class="product__title">{{product.title}}</div>
+                        <div class="product__qty">Qty: {{product.qty}}</div>
+                    </div>
                 </div>
-                <div class="product-details__labels">
-                    <div class="product__title">{{product.title}}</div>
-                    <div class="product__qty">Qty: {{product.qty}}</div>
+                <div class="product-amount">
+                    <button class="product__btn--remove" (click)="remove(product)">Remove</button>
+                    <div class="product__price">$ {{product.amount | number : '1.2-2'}}</div>
                 </div>
             </div>
-            <div class="product-amount">
-                <button class="product__btn--remove" (click)="remove(product)">Remove</button>
-                <div class="product__price">$ {{product.amount | number : '1.2-2'}}</div>
-            </div>
-        </div>
+        </ng-container>
     </div>
     <div class="total-amount">
         <label class="total">Total</label>

@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { ICartProductState } from '../../models/cart-product.state';
 import { IProduct } from '../../models/product.interface';
-import { addProduct, loadedProductList, removeProduct } from '../actions/product.actions';
+import { addProduct, removeProduct } from '../actions/product.actions';
 
 
 export const initialState: ICartProductState = { cartProducts: [], totalAmount: 0 };
@@ -15,7 +15,7 @@ export const cartProductsReducer = createReducer(
         let currentProduct = state.cartProducts.filter(el => el.id === product.id)[0];
         if (currentProduct) {
             newProduct = { ...product, qty: currentProduct.qty as number + product.qty };
-            newState.splice(newState.indexOf(product), 1);
+            newState.splice(newState.indexOf(currentProduct), 1);
         } else {
             newProduct = { ...product };
         }
@@ -25,7 +25,7 @@ export const cartProductsReducer = createReducer(
         } else {
             totalAmount = state.totalAmount + newProduct.amount;
         }
-        return { ...state, cartProducts: [...newState, ...[newProduct]], totalAmount };
+        return { ...state, cartProducts: [...[newProduct], ...newState], totalAmount };
     }),
     on(removeProduct, (state, { product }) => {
         let totalAmount = 0;
