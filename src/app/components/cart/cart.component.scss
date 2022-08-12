@@ -66,6 +66,7 @@
                 .product__price {
                     margin: 5px;
                     font-weight: 500;
+                    font-size: 12px;
                 }
 
                 .product__btn--remove {
@@ -99,12 +100,19 @@
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
     .cart {
         &__product-list {
-            padding: 10px !important;
             &__product {
-                margin: 5px 0px;
+                .product-details {
+                    &__labels {
+                        .product__title {
+                            overflow: auto;
+                            max-height: 75px;
+                            max-width: 180px;
+                        }
+                    }
+                }
             }
         }
     }
