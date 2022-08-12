@@ -12,6 +12,8 @@ let mockSelector: MemoizedSelector<AppState, boolean>;
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
+  let compiled: HTMLElement;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -22,9 +24,9 @@ describe('AppComponent', () => {
 
     mockStore = TestBed.inject(MockStore);
     mockSelector = mockStore.overrideSelector(selectLoading, false);
-
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -50,11 +52,10 @@ describe('AppComponent', () => {
     mockSelector.setResult(true);
     mockStore.refreshState();
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.loading')?.textContent).toContain('Loading');
   });
 
-  it('should dispatch loadProducts action on init', () => {
+  it('should dispatch LOAD_PRODUCTS action on init', () => {
     mockStore.scannedActions$.subscribe((action) => {
       expect(action.type).toBe(ProductActions.LOAD_PRODUCTS);
     });
