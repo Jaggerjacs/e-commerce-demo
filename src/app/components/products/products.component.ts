@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../models/product.interface';
-import { addProduct, addQty, sustractQty } from '../../state/actions/product.actions';
+import { addProduct, addQty, subtractQty } from '../../state/actions/product.actions';
 import { AppState } from '../../state/app.state';
 import { selectProductList } from '../../state/selectors/products.selectors';
 
@@ -23,12 +23,12 @@ export class ProductsComponent implements OnInit {
     this.products$ = this.store.select(selectProductList);
   }
 
-  addQty(product: IProduct) {
+  addProductQty(product: IProduct) {
     this.store.dispatch(addQty({ product }));
   }
 
-  sustractQty(product: IProduct) {
-    this.store.dispatch(sustractQty({ product }));
+  subtractProductQty(product: IProduct) {
+    this.store.dispatch(subtractQty({ product }));
   }
 
   addProduct(product: IProduct) {

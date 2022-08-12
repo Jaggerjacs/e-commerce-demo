@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { IProductState } from '../../models/product.state';
-import { loadProducts, loadedProductList, addQty, sustractQty } from '../actions/product.actions';
+import { loadProducts, loadedProductList, addQty, subtractQty } from '../actions/product.actions';
 
 
 export const initialState: IProductState = { loading: false, products: [] };
@@ -23,7 +23,7 @@ export const productsReducer = createReducer(
         });
         return { ...state, products: [...newState] };
     }),
-    on(sustractQty, (state, { product }) => {
+    on(subtractQty, (state, { product }) => {
         const newState = state.products.map(el => {
             if (el.id === product.id && product.qty > 1) {
                 return { ...el, qty: product.qty - 1 }

@@ -5,7 +5,7 @@
       <i class="fa-solid fa-cart-shopping"></i>
     </div>
   </div>
-  <div *ngIf="(loading$ | async); else content">cargando...</div>
+  <div *ngIf="(loading$ | async); else content" class="loading">Loading...</div>
   <ng-template #content>
     <div class="content">
       <div class="products">

@@ -6,9 +6,10 @@
         <div class="product__price">$ {{product.price | number : '1.2-2'}}</div>
         <div class="product__title">{{product.title}}</div>
         <div class="product__qty">
-            <button class="qty-btn minus" (click)="sustractQty(product)"><i class="fa-solid fa-minus"></i></button>
+            <button class="qty-btn minus" (click)="subtractProductQty(product)"><i
+                    class="fa-solid fa-minus"></i></button>
             <div class="qty-label">{{product.qty}}</div>
-            <button class="qty-btn plus" (click)="addQty(product)"><i class="fa-solid fa-plus"></i></button>
+            <button class="qty-btn plus" (click)="addProductQty(product)"><i class="fa-solid fa-plus"></i></button>
         </div>
         <button class="product__btn--add" (click)="addProduct(product)">Add</button>
     </div>

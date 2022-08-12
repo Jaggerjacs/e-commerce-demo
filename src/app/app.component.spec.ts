@@ -1,35 +1,74 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MemoizedSelector } from '@ngrx/store';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
+import { ProductActions } from './state/actions/product.actions';
+import { AppState } from './state/app.state';
+import { selectLoading } from './state/selectors/products.selectors';
+
+let mockStore: MockStore<AppState>;
+let mockSelector: MemoizedSelector<AppState, boolean>;
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      providers: [provideMockStore()]
     }).compileComponents();
+
+    mockStore = TestBed.inject(MockStore);
+    mockSelector = mockStore.overrideSelector(selectLoading, false);
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'frontend-home-test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend-home-test');
+  it('should have a false value by dfefault on loading', () => {
+    component.loading$.subscribe((value) => {
+      expect(value).toBe(false);
+    });
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should have a true value on loading selector', () => {
+    mockSelector.setResult(true);
+    mockStore.refreshState();
+    component.loading$.subscribe((value) => {
+      expect(value).toBe(true);
+    });
+  });
+
+  it('should render a Loading text on true value', () => {
+    mockSelector.setResult(true);
+    mockStore.refreshState();
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend-home-test app is running!');
+    expect(compiled.querySelector('.loading')?.textContent).toContain('Loading');
   });
+
+  it('should dispatch loadProducts action on init', () => {
+    mockStore.scannedActions$.subscribe((action) => {
+      expect(action.type).toBe(ProductActions.LOAD_PRODUCTS);
+    });
+  });
+
+  it('should have a showCart false value on init', () => {
+    expect(component.showCart).toBe(false);
+  });
+
+  it('should change showCart value to true on toglleCart', () => {
+    component.toggleCart();
+    expect(component.showCart).toBe(true);
+  });
+
+
+
 });

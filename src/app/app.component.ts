@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable } from 'rxjs';
 import { loadProducts } from './state/actions/product.actions';
+import { AppState } from './state/app.state';
 import { selectLoading } from './state/selectors/products.selectors';
 
 @Component({
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   loading$ = new Observable<boolean>();
   showCart = false;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.dispatch(loadProducts());
