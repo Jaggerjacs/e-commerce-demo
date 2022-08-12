@@ -16,7 +16,7 @@ let product: IProduct = {
   id: 0,
   title: 'test',
   amount: 100,
-  image: 'noImg',
+  image: '',
   price: 10,
   qty: 10
 };

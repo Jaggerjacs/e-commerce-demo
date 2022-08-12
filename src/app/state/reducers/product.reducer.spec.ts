@@ -7,7 +7,7 @@ let product: IProduct = {
     id: 0,
     title: 'test',
     amount: 10,
-    image: 'noImg',
+    image: '',
     price: 10,
     qty: 1
 };
