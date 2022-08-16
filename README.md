@@ -19,3 +19,10 @@ https://jaggerjacs.github.io/frontend-home-test/
 
 * Run `ng test` to execute the unit tests.
 
+## Next improvements (could add)
+
+* SCSS: add mixins and improve BEM structure.
+* Components: could move some template to child components (more decoupling and CSS improvement).
+* Unit Tests: more spyOns and further template tests.
+* Clean code: move some code to functions for reuse. Add code comments for readability and IntelliSense.
+
