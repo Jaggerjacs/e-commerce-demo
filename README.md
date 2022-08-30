@@ -3,10 +3,10 @@
 Angular version 13.3.9.
 
 ## Repository
-https://github.com/Jaggerjacs/frontend-home-test
+https://github.com/Jaggerjacs/e-commerce-demo
 
 ## Host project
-https://jaggerjacs.github.io/frontend-home-test/
+https://jaggerjacs.github.io/e-commerce-demo/
 
 ## Run project
 * Must have installed Node.js on local enviroment
